@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración — CPCE Chubut</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ══ LOGIN ════════════════════════════════════════════════ -->
+  <div id="loginView" class="login-wrap">
+    <div class="login-card">
+      <i class="fa-solid fa-lock"></i>
+      <h1>Acceso Organizadores</h1>
+      <p>Panel de control del evento</p>
+
+      <div id="loginAlert" class="alert error hidden">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Contraseña incorrecta.</span>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group" style="text-align: left;">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" id="password" class="form-control" placeholder="••••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Ingresar al Panel
+        </button>
+      </form>
+
+      <p style="margin-top:2rem; font-size:0.85rem;">
+        <a href="index.html" style="color:var(--text-muted);"><i class="fa-solid fa-arrow-left"></i> Volver al Formulario</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ══ DASHBOARD ════════════════════════════════════════════ -->
+  <div id="dashboardView" class="hidden">
+    
+    <!-- Header -->
+    <header class="dash-header">
+      <div class="container dash-header-inner">
+        <div class="dash-brand">
+          <img src="logo.png" width="120" height="40" alt="CPCE Logo" onerror="this.style.display='none'">
+          <h1>Panel de Control</h1>
+        </div>
+        <div class="dash-actions">
+          <span id="dataModeBadge" class="badge-mode">Simulador</span>
+          <button id="exportCsvBtn" class="btn-outline" style="padding:0.4rem 1rem; font-size:0.8rem;">
+            <i class="fa-solid fa-file-csv"></i> Exportar
+          </button>
+          <button id="logoutBtn" class="btn-outline" style="padding:0.4rem 1rem; font-size:0.8rem; border-color:var(--text-muted); color:var(--text-muted);">
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container" style="padding: 2rem 1.5rem;">
+      <div id="adminAlert" class="alert hidden"></div>
+
+      <!-- Métricas -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <p class="metric-title">Confirmados</p>
+          <p class="metric-value" id="metricConfirmados">0</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Asistencia segura</p>
+        </div>
+        <div class="metric-card accent-teal">
+          <p class="metric-title">Acreditados</p>
+          <p class="metric-value" id="metricPresent">0</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);" id="metricPresentPct">0% de confirmados</p>
+        </div>
+        <div class="metric-card accent-blue">
+          <p class="metric-title">Interesados</p>
+          <p class="metric-value" id="metricInteresados">0</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Pendientes de confirmación</p>
+        </div>
+        <div class="metric-card" style="border-color:var(--gray-border);">
+          <p class="metric-title">Menús Especiales</p>
+          <p class="metric-value" id="metricEspecial" style="font-size:2rem; margin-top:0.75rem;">0</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);" id="metricEspecialDesc">Veg · Vegan · Sin TACC</p>
+        </div>
+      </div>
+
+      <!-- Controles: Buscar y Filtrar -->
+      <div class="controls-bar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Buscar por nombre, correo o teléfono…" spellcheck="false">
+        </div>
+        <select id="filterEstado" class="filter-select">
+          <option value="todos">Todos los Estados</option>
+          <option value="Confirmado">Confirmados</option>
+          <option value="Interesado">Interesados</option>
+        </select>
+        <select id="filterMenu" class="filter-select">
+          <option value="todos">Todos los Menús</option>
+          <option value="Tradicional">Tradicional</option>
+          <option value="Vegetariano">Vegetariano</option>
+          <option value="Vegano">Vegano</option>
+          <option value="Celíaco / Sin TACC">Sin TACC</option>
+        </select>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Nombre y Apellido</th>
+              <th>Contacto</th>
+              <th>Estado</th>
+              <th>Menú</th>
+              <th style="text-align:center;">Acreditación</th>
+            </tr>
+          </thead>
+          <tbody id="guestsTableBody">
+            <tr>
+              <td colspan="5" style="text-align:center; padding:3rem; color:var(--text-muted);">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size:1.5rem; display:block; margin-bottom:0.5rem;" aria-hidden="true"></i>
+                Cargando datos…
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

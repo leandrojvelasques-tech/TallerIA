@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Día del Graduado — CPCE Chubut</title>
+  <meta name="description" content="Gestión de asistencia al Día del Graduado en Ciencias Económicas.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ══ HEADER INSTITUCIONAL ════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-wrap">
+        <img src="logo.png" width="180" height="60" alt="CPCE Chubut Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span style="display:none;font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:700;color:#102f4d;">CPCE CHUBUT</span>
+      </div>
+      <p class="tagline">Consejo Profesional de Ciencias Económicas del Chubut</p>
+      <h1 class="event-title">Día del Graduado</h1>
+      <p class="event-subtitle">Celebración Anual 2026</p>
+    </div>
+  </header>
+
+  <!-- ══ FORMULARIO DE INSCRIPCIÓN (Superpuesto) ═════════════ -->
+  <section class="container" style="position:relative; z-index:10;">
+    <div class="rsvp-box">
+      <h2 class="section-title">Inscripción al Evento</h2>
+      <div class="title-separator"></div>
+      <p class="section-subtitle">Por favor, completá el formulario para gestionar tu lugar.</p>
+
+      <div id="formAlert" class="alert hidden"></div>
+
+      <form id="rsvpForm" novalidate>
+        
+        <div class="form-group">
+          <label for="nombre" class="form-label">Nombre y Apellido *</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Juan Pérez…" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="telefono" class="form-label">Teléfono de contacto *</label>
+          <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Ej. 2974 123456…" required autocomplete="tel">
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico *</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="correo@ejemplo.com…" required autocomplete="email" spellcheck="false">
+        </div>
+
+        <!-- Tipo de Menú -->
+        <div class="form-group mt-4">
+          <label class="form-label">Tipo de menú *</label>
+          <div class="radio-grid">
+            <label class="radio-opt">
+              <input type="radio" name="menu" value="Tradicional" checked>
+              <div class="radio-card">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Tradicional</span>
+              </div>
+            </label>
+            <label class="radio-opt">
+              <input type="radio" name="menu" value="Vegetariano">
+              <div class="radio-card">
+                <i class="fa-solid fa-leaf"></i>
+                <span>Vegetariano</span>
+              </div>
+            </label>
+            <label class="radio-opt">
+              <input type="radio" name="menu" value="Vegano">
+              <div class="radio-card">
+                <i class="fa-solid fa-seedling"></i>
+                <span>Vegano</span>
+              </div>
+            </label>
+            <label class="radio-opt">
+              <input type="radio" name="menu" value="Celíaco / Sin TACC">
+              <div class="radio-card">
+                <i class="fa-solid fa-wheat-awn-circle-exclamation"></i>
+                <span>Sin TACC</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Estado -->
+        <div class="form-group mt-4">
+          <label class="form-label">Estado de Asistencia *</label>
+          <div class="radio-grid">
+            <label class="radio-opt">
+              <input type="radio" name="estado" value="Confirmado" checked>
+              <div class="radio-card">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Confirmo mi asistencia</span>
+                <p class="hint">Aseguro mi lugar en el evento</p>
+              </div>
+            </label>
+            <label class="radio-opt">
+              <input type="radio" name="estado" value="Interesado">
+              <div class="radio-card">
+                <i class="fa-regular fa-clock"></i>
+                <span>Estoy interesado</span>
+                <p class="hint">Confirmaré más adelante</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-primary">
+          <i class="fa-regular fa-paper-plane"></i> Enviar Formulario
+        </button>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ══ DETALLES Y MAPA ═════════════════════════════════════ -->
+  <section class="section-pad section-light">
+    <div class="container">
+      <h2 class="section-title">Información del Evento</h2>
+      <div class="title-separator"></div>
+
+      <div class="details-grid">
+        <div class="detail-card">
+          <div class="icon-wrapper"><i class="fa-regular fa-calendar-check"></i></div>
+          <h3>Fecha &amp; Hora</h3>
+          <p><strong>Jueves 4 de Junio, 2026</strong><br>Acreditaciones: 20:30 hs</p>
+          <button id="addToCalendarBtn" class="btn-outline">
+            <i class="fa-solid fa-calendar-plus"></i> Agendar
+          </button>
+        </div>
+
+        <div class="detail-card">
+          <div class="icon-wrapper"><i class="fa-solid fa-location-dot"></i></div>
+          <h3>Sede Comodoro Rivadavia</h3>
+          <p><strong>Delegación CPCE</strong><br>Calle Huergo 936, Chubut</p>
+          <a href="https://maps.google.com/?q=Calle+Huergo+936,+Comodoro+Rivadavia,+Chubut" target="_blank" class="btn-outline">
+            <i class="fa-solid fa-map-location-dot"></i> Ver Mapa
+          </a>
+        </div>
+      </div>
+
+      <div class="map-frame mt-4">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.6180598711417!2d-67.4891395!3d-45.867909199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95f6a2ff2a4de471%3A0xc3cf3388713280de!2sHuergo%20936%2C%20Comodoro%20Rivadavia%2C%20Chubut!5e0!3m2!1ses-419!2sar!4v1716938491000!5m2!1ses-419!2sar" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <img src="logo.png" width="150" height="50" loading="lazy" alt="CPCE Chubut" onerror="this.style.display='none'">
+      <p>© 2026 Consejo Profesional de Ciencias Económicas del Chubut. Todos los derechos reservados.</p>
+      <p class="mt-4">
+        <a href="admin.html"><i class="fa-solid fa-lock"></i> Acceso Organizadores</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
